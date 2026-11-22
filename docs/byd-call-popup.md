@@ -1,7 +1,8 @@
 # Hide the BYD call popup
 
-On BYD Android 12L (SDK 32), **Advanced → Advanced media → Hide BYD call popup**
-is an opt-in setting, off by default. It needs classic local ADB at
+On BYD Android 10 or later, **Advanced → Advanced media → Hide BYD call popup**
+is on by default. Turn it off in Settings if you want the car's call popup while
+CarPlay is in front. It needs classic local ADB at
 `127.0.0.1:5555` and approval of DiPlay's existing ADB key. Use the existing
 **Check ADB access** action to approve it; the background guard never opens an
 authorization prompt while driving.

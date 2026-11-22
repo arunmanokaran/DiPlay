@@ -37,7 +37,7 @@ class BydCallPopupSettingsTest {
 
     @Test
     @Config(sdk = [29, 32])
-    fun popupOptInDefaultsOffAndChangesOnlyItsPreferenceWithoutReconnect() {
+    fun popupSuppressionDefaultsOnForBydAndCanBeDisabledWithoutReconnect() {
         val activity = Robolectric.buildActivity(DiPlayActivity::class.java).get()
         activity.setTheme(android.R.style.Theme_Material_NoActionBar)
         val prefs = activity.getSharedPreferences("xcertplay_airplay", 0)
@@ -47,8 +47,8 @@ class BydCallPopupSettingsTest {
         ReflectionHelpers.callInstanceMethod<Unit>(activity, "allSettingsSections",
             ReflectionHelpers.ClassParameter.from(LinearLayout::class.java, content))
         val popup = switches(content).singleOrNull { it.contentDescription == "Hide BYD call popup (experimental)" }
-        assertNotNull("Android 10 and later must expose the opt-in popup control", popup)
-        assertFalse(popup!!.isChecked)
+        assertNotNull("Android 10 and later BYD head units must expose the popup control", popup)
+        assertTrue(popup!!.isChecked)
         val before = prefs.all.toMap()
         popup.isChecked = true
         assertEquals(before + ("hide_byd_call_popup" to true), prefs.all)
